@@ -10,8 +10,8 @@ const CanvasTextOverlay = () => {
     if (!ctx) return;
 
     // Set canvas dimensions
-    canvas.width = 500;
-    canvas.height = 500;
+    canvas.width = 800;
+    canvas.height = 800;
 
     // Function to draw multiline text
     const drawText = (
@@ -50,20 +50,26 @@ const CanvasTextOverlay = () => {
       ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
       // Add second text
-      ctx.font = "30px System-ui";
+      ctx.font = "50px System-ui";
       ctx.fillStyle = "black";
       drawText(
         ctx,
         "¡A {Gerardo} le traeré {un hermoso auto}!",
-        240,
-        50,
-        250,
-        40
+        390,
+        70,
+        360,
+        60
       );
     };
   }, []);
 
-  return <canvas className="rounded-md" ref={canvasRef}></canvas>;
+  return (
+    <canvas
+      className="rounded-md"
+      ref={canvasRef}
+      style={{ width: "50%" }}
+    ></canvas>
+  );
 };
 
 export default CanvasTextOverlay;
