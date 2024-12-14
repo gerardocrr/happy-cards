@@ -1,16 +1,20 @@
 import { useState } from "react";
-import { CardSanta } from "./components/CardSanta";
+import { Layout } from "./components/Layout";
 import { Form } from "./components/Form";
+import { CardSanta } from "./components/CardSanta";
+import "./App.css";
 
 function App() {
   const [name, setName] = useState("");
   const [gift, setGift] = useState("");
   return (
     <>
-      <div className="container max-w-4xl mx-auto flex flex-col h-svh justify-center items-center">
-        <Form setName={setName} setGift={setGift} />
-        <CardSanta name={name} gift={gift} />
-      </div>
+      <Layout>
+        <div className="container max-w-4xl mx-auto flex flex-col h-svh justify-center items-center">
+          <Form setName={setName} setGift={setGift} />
+          <CardSanta name={name} gift={gift} />
+        </div>
+      </Layout>
     </>
   );
 }
