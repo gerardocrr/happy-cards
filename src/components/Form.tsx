@@ -17,7 +17,7 @@ export function Form({ setName, setGift }: FormProps) {
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col w-1/2">
-      <label htmlFor="name" className="mb-2">
+      <label htmlFor="name" className="text-lg text-white mb-2">
         Ingresa tu nombre:
       </label>
       <input
