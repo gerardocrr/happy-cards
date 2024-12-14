@@ -77,7 +77,9 @@ export function CardSanta({ name, gift }: CardSantaProps) {
         ref={canvasRef}
         style={{ width: "50%" }}
       ></canvas>
-      {gift && <button className="w-1/2 bg-white rounded-md">Compartir</button>}
+      {gift && (
+        <button className="w-1/2 p-1 bg-white rounded-md">Compartir</button>
+      )}
     </>
   );
 }
