@@ -1,6 +1,11 @@
 import { useEffect, useRef } from "react";
 
-const CanvasTextOverlay = () => {
+interface CardSantaProps {
+  name: string;
+  gift: string;
+}
+
+export function CardSanta({ name, gift }: CardSantaProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
@@ -54,14 +59,16 @@ const CanvasTextOverlay = () => {
       ctx.fillStyle = "black";
       drawText(
         ctx,
-        "¡A {Gerardo} le traeré {un hermoso auto}!",
+        name === ""
+          ? "¡A Juan le traeré un pedazo de carbon!"
+          : `¡A ${name} le traeré ${gift}!`,
         390,
-        70,
+        65,
         360,
-        60
+        50
       );
     };
-  }, []);
+  }, [gift]);
 
   return (
     <canvas
@@ -70,6 +77,4 @@ const CanvasTextOverlay = () => {
       style={{ width: "50%" }}
     ></canvas>
   );
-};
-
-export default CanvasTextOverlay;
+}
