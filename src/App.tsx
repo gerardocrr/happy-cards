@@ -7,7 +7,7 @@ function App() {
   const [gift, setGift] = useState("");
   return (
     <>
-      <div className="container max-w-4xl mx-auto bg-red-600 flex flex-col h-svh justify-center items-center">
+      <div className="container max-w-4xl mx-auto flex flex-col h-svh justify-center items-center">
         <Form setName={setName} setGift={setGift} />
         <CardSanta name={name} gift={gift} />
       </div>
