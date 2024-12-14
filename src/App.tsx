@@ -1,16 +1,15 @@
-import CanvasTextOverlay from "./components/Canvas1";
+import { useState } from "react";
+import { CardSanta } from "./components/CardSanta";
+import { Form } from "./components/Form";
 
 function App() {
+  const [name, setName] = useState("");
+  const [gift, setGift] = useState("");
   return (
     <>
       <div className="container max-w-4xl mx-auto bg-red-600 flex flex-col h-svh justify-center items-center">
-        <h1>Happy cards</h1>
-        <div className="flex flex-col w-1/2">
-          <label htmlFor="">Ingresa tu nombre</label>
-          <input className="mb-5" type="text" />
-          <button className="bg-white rounded-md mb-5">Buscar regalo</button>
-        </div>
-        <CanvasTextOverlay />
+        <Form setName={setName} setGift={setGift} />
+        <CardSanta name={name} gift={gift} />
       </div>
     </>
   );
