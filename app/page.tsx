@@ -7,12 +7,10 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  //const [name, setName] = useState("");
-  //const [gift, setGift] = useState("");
   return (
     <div>
       <Link href={"/santa-claus"}>Santa Claus</Link>
-      <p>año nuevo</p>
+      <Link href={"/año-nuevo"}>Santa Claus</Link>
     </div>
   );
 }
