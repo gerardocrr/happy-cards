@@ -5,16 +5,14 @@ const uploadToCloudinary = async (imageBlob: Blob) => {
 
   try {
     const response = await fetch(
-      `https://api.cloudinary.com/v1_1/${process.env.VITE_CLOUD_NAME}/image/upload`,
+      `https://api.cloudinary.com/v1_1/${process.env.NEXT_PUBLIC_CLOUD_NAME}/image/upload`,
       {
         method: "POST",
         body: formData,
       }
     );
-
     const data = await response.json();
-    console.log("Uploaded Image URL:", data.secure_url);
-    return data.secure_url;
+    return data.public_id;
   } catch (error) {
     console.error("Error uploading image:", error);
   }
@@ -30,8 +28,10 @@ export const shareToFacebook = async (
   }
   canvas.toBlob(async (blob) => {
     if (blob) {
-      const url = encodeURIComponent(await uploadToCloudinary(blob));
-
+      const url = encodeURIComponent(
+        "https://happy-cards.vercel.app/image/" +
+          (await uploadToCloudinary(blob))
+      );
       window.open(
         `https://www.facebook.com/sharer/sharer.php?u=${url}`,
         "_blank"
