@@ -1,4 +1,5 @@
 import { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -6,9 +7,12 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
+  //const [name, setName] = useState("");
+  //const [gift, setGift] = useState("");
   return (
     <div>
-      <h1>Hola</h1>
+      <Link href={"/santa-claus"}>Santa Claus</Link>
+      <p>año nuevo</p>
     </div>
   );
 }
