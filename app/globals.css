@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.canvas-snow {
+  padding: 0;
+  margin: 0;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  z-index: 0;
+}
+.page {
+  background-color: #1d1717;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+}
+.page > *:not(.canvas-snow) {
+  position: relative;
+  z-index: 1;
+}
