@@ -158,7 +158,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="page">
-        {children}
+        <div className="container max-w-4xl mx-auto flex flex-col h-svh justify-center items-center">
+          {children}
+        </div>
         <SnowCanvas
           className="canvas-snow snow1"
           options={{
