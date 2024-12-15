@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Form } from "@/components/Form";
 import { CardSanta } from "@/components/CardSanta";
 
-export default function () {
+export default function SantaGifts() {
   const [name, setName] = useState("");
   const [gift, setGift] = useState("");
   return (
