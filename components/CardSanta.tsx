@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { shareToFacebook } from "@/lib/shareImage";
+import { handleShareCard } from "@/lib/shareImage";
 
 interface CardSantaProps {
   name: string;
@@ -83,8 +83,10 @@ export function CardSanta({ name, gift }: CardSantaProps) {
       {gift && (
         <button
           className="w-1/2 p-1 bg-white rounded-md"
-          onClick={async () =>
-            await shareToFacebook(
+          onClick={() =>
+            handleShareCard(
+              name,
+              gift,
               canvasRef as React.RefObject<HTMLCanvasElement>
             )
           }
