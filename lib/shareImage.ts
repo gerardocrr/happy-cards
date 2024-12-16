@@ -12,31 +12,22 @@ const uploadToCloudinary = async (imageBlob: Blob) => {
       }
     );
     const data = await response.json();
+    console.log(data);
     return data.public_id;
   } catch (error) {
     console.error("Error uploading image:", error);
   }
 };
 
-export const saveToLocalStorage = (name: string, gift: string) => {
+const saveToLocalStorage = (name: string, gift: string, id: string) => {
   localStorage.setItem("name", name);
   localStorage.setItem("gift", gift);
+  localStorage.setItem("public_id", id);
 };
 
-export const readLocalStorage = (name: string, gift: string) => {
-  const nameLS = localStorage.getItem("name");
-  const giftLS = localStorage.getItem("gift");
-
-  if (nameLS === name && giftLS === gift) {
-    console.log("Los datos ya existen");
-    return true;
-  } else {
-    console.log("Los datos no existesn");
-    return false;
-  }
-};
-
-export const shareToFacebook = async (
+const uploadAndShare = async (
+  name: string,
+  gift: string,
   canvasRef: React.RefObject<HTMLCanvasElement>
 ) => {
   const canvas = canvasRef.current;
@@ -46,10 +37,11 @@ export const shareToFacebook = async (
   }
   canvas.toBlob(async (blob) => {
     if (blob) {
+      const id = await uploadToCloudinary(blob);
       const url = encodeURIComponent(
-        "https://happy-cards.vercel.app/image/" +
-          (await uploadToCloudinary(blob))
+        `https://happy-cards.vercel.app/image/${id}`
       );
+      saveToLocalStorage(name, gift, id);
       window.open(
         `https://www.facebook.com/sharer/sharer.php?u=${url}`,
         "_blank"
@@ -58,4 +50,31 @@ export const shareToFacebook = async (
       console.error("Failed to create blob from canvas");
     }
   }, "image/webp");
+};
+
+const onlyShare = (id: string) => {
+  const url = encodeURIComponent(`https://happy-cards.vercel.app/image/${id}`);
+  window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, "_blank");
+};
+
+export const handleShareCard = (
+  name: string,
+  gift: string,
+  canvasRef: React.RefObject<HTMLCanvasElement>
+) => {
+  const nameLS = localStorage.getItem("name");
+  const giftLS = localStorage.getItem("gift");
+  const public_id = localStorage.getItem("public_id");
+
+  if (nameLS === name && giftLS === gift) {
+    console.log("Los datos ya existen");
+    if (public_id) {
+      onlyShare(public_id);
+    } else {
+      console.error("public_id is null");
+    }
+  } else {
+    console.log("Los datos no existen");
+    uploadAndShare(name, gift, canvasRef);
+  }
 };
