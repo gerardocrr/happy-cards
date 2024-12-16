@@ -9,8 +9,10 @@ export async function generateMetadata({ params }: Params) {
 
   return {
     openGraph: {
-      title: "nombre",
-      description: "producto",
+      title:
+        "🎅 ¡Santa ya sabe qué te traerá esta Navidad! Descúbrelo ahora. 🎁",
+      description:
+        "¿Fuiste bueno o travieso este año? 🎄 Santa Claus tiene un mensaje especial para ti. Genera tu imagen personalizada y compártela con tus amigos. ¡Descubre qué sorpresa te espera bajo el árbol!",
       images: [`https://happy-cards.vercel.app/image/${id}`],
     },
   };
