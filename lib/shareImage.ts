@@ -18,6 +18,24 @@ const uploadToCloudinary = async (imageBlob: Blob) => {
   }
 };
 
+export const saveToLocalStorage = (name: string, gift: string) => {
+  localStorage.setItem("name", name);
+  localStorage.setItem("gift", gift);
+};
+
+export const readLocalStorage = (name: string, gift: string) => {
+  const nameLS = localStorage.getItem("name");
+  const giftLS = localStorage.getItem("gift");
+
+  if (nameLS === name && giftLS === gift) {
+    console.log("Los datos ya existen");
+    return true;
+  } else {
+    console.log("Los datos no existesn");
+    return false;
+  }
+};
+
 export const shareToFacebook = async (
   canvasRef: React.RefObject<HTMLCanvasElement>
 ) => {
