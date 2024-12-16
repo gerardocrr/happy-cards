@@ -12,7 +12,6 @@ const uploadToCloudinary = async (imageBlob: Blob) => {
       }
     );
     const data = await response.json();
-    console.log(data);
     return data.public_id;
   } catch (error) {
     console.error("Error uploading image:", error);
@@ -67,14 +66,12 @@ export const handleShareCard = (
   const public_id = localStorage.getItem("public_id");
 
   if (nameLS === name && giftLS === gift) {
-    console.log("Los datos ya existen");
     if (public_id) {
       onlyShare(public_id);
     } else {
       console.error("public_id is null");
     }
   } else {
-    console.log("Los datos no existen");
     uploadAndShare(name, gift, canvasRef);
   }
 };
