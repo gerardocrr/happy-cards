@@ -82,7 +82,7 @@ export function CardSanta({ name, gift }: CardSantaProps) {
       ></canvas>
       {gift && (
         <button
-          className="w-1/2 p-1 bg-[#0866ff] rounded-md"
+          className="w-1/2 p-1 bg-white rounded-md"
           onClick={() =>
             handleShareCard(
               name,
